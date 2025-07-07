@@ -13,3 +13,4 @@ if (-not (Get-Content $PROFILE | Select-String -SimpleMatch $aliasLine)) {
     Write-Host "Alias already exists"
 }
 Write-Host "Done! Restart PowerShell"
+exit
