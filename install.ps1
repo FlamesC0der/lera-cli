@@ -12,5 +12,6 @@ if (-not (Get-Content $PROFILE | Select-String -SimpleMatch $aliasLine)) {
 } else {
     Write-Host "Alias already exists"
 }
-Write-Host "Done! Restart PowerShell"
+Write-Host "✨ Successfully installed!"
+Write-Host "► Please restart terminal."
 exit
