@@ -1,19 +1,14 @@
-# install.ps1
-
-$profilePath = $PROFILE
+$leraArtUrl = "https://raw.githubusercontent.com/FlamesC0der/lera-cli/master/lera-art"
 $leraArtPath = "$HOME\.lera-art"
 
-Copy-Item -Path ".\lera-art" -Destination $leraArtPath -Force
-
-if (-not (Test-Path $profilePath)) {
-    New-Item -ItemType File -Path $profilePath -Force
-}
+Invoke-WebRequest -Uri $leraArtUrl -OutFile $leraArtPath -UseBasicParsing
 
 $aliasLine = "Set-Alias lera Get-Content `"$leraArtPath`""
-$profileContent = Get-Content $profilePath
-
-if (-not ($profileContent -contains $aliasLine)) {
-    Add-Content $profilePath "`n$aliasLine"
+if (-not (Test-Path $PROFILE)) {
+    New-Item -ItemType File -Path $PROFILE -Force
+}
+if (-not (Get-Content $PROFILE | Select-String -SimpleMatch $aliasLine)) {
+    Add-Content $PROFILE "`n$aliasLine"
 } else {
     Write-Host "Alias already exists"
 }

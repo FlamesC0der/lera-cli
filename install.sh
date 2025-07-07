@@ -1,11 +1,6 @@
 #!/bin/bash
 
-if [ ! -f "./lera-art" ]; then
-    echo "Lera Art not found."
-    exit 1
-fi
-
-cp ./lera-art ~/.lera-art
+curl -s -o ~/.lera-art https://raw.githubusercontent.com/FlamesC0der/lera-cli/master/lera-art
 
 if ! grep -q "alias lera=" ~/.bash_profile; then
     echo "alias lera='cat ~/.lera-art'" >> ~/.bash_profile
