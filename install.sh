@@ -12,15 +12,24 @@ plain='\033[0m'
 
 cur_dir=$(pwd)
 
+echo -e "${green}► Installing lera-cli${plain}"
+
 curl -s -o ~/.lera-art https://raw.githubusercontent.com/FlamesC0der/lera-cli/master/lera-art
+
+if ! grep -q "alias clera=" ~/.bash_profile; then
+    echo "alias clera='clear'" >> ~/.bash_profile
+fi
 
 if ! grep -q "alias lera=" ~/.bash_profile; then
     echo "alias lera='cat ~/.lera-art'" >> ~/.bash_profile
-else
-    echo -e "${red}⚠︎  Alias already exists${plain}"
-    exit 1
 fi
 
-echo -e "${magenta}✨ Successfully installed!${plain}"
-echo -e "${green}►  Please restart terminal${plain}"
+echo -e "${magenta}► Successfully installed!${plain}"
+
+echo -e "${cyan}► Added commands:${plain}"
+echo -e "${cyan} - clera - clear alias${plain}"
+echo -e "${cyan} - lera  - print cute art 💖${plain}"
+cat ~/.lera-art
+echo -e ""
+echo -e "${green}► Please restart terminal${plain}"
 exit 0
